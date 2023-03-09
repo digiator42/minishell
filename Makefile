@@ -1,12 +1,12 @@
 NAME = minishell
 
 SRCS =	parsing.c \
-		
+		utils.c
 OBJS = $(SRCS:.c=.o)
 
 GCC = cc
 
-CFLAGS = -g3 -Wall -Werror -Wextra -I/usr/local/Cellar/readline/8.1/include
+CFLAGS = -g3 -Wall -Werror -Wextra -I/usr/local/Cellar/readline/8.1/include -fsanitize=address
 
 EXEC = minishell
 

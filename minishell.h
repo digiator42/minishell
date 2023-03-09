@@ -1,3 +1,4 @@
+
 #ifndef MINI_SHELL_H
 # define MINI_SHELL_H
 
@@ -20,7 +21,9 @@
 typedef struct s_infra
 {
 	char *rd;
+	char *trim_rd;
 } t_infra;
 
-
+char* replace(char* str, char* old, char* newstr);
+void	clean_quotes(char *str);
 #endif
