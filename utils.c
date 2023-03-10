@@ -6,7 +6,7 @@
 /*   By: ahassan <ahassan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:17:58 by ahassan           #+#    #+#             */
-/*   Updated: 2023/03/09 19:08:03 by ahassan          ###   ########.fr       */
+/*   Updated: 2023/03/09 23:06:49 by ahassan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,32 @@ void	clean_quotes(char *str)
 		i++;
 	}
 	str[j] = '\0';
+}
+
+int	right_quotes(char *str)
+{
+	int single = 0;
+	int paired = 0;
+	int i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'')
+		{
+			if (single)
+				single = 0;
+			else if (!paired)
+				single = 1;
+		}
+		else if (str[i] == '\"')
+		{
+			if (paired)
+				paired = 0;
+			else if (!single)
+				paired = 1;
+		}
+		i++;
+	}
+	if (single || paired)
+		return (0);
+	return (1);
 }
