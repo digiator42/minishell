@@ -6,7 +6,7 @@
 /*   By: ahassan <ahassan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:21:37 by ahassan           #+#    #+#             */
-/*   Updated: 2023/03/10 19:53:36 by ahassan          ###   ########.fr       */
+/*   Updated: 2023/03/11 01:00:47 by ahassan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int get_line(t_infra *shell)
 {
 	int i;
 	signal(SIGINT, handler);
+	signal(SIGQUIT, SIG_IGN);
 	while(1)
 	{
 		shell->rd = readline("minishell{😎}> ");
@@ -50,21 +51,25 @@ int get_line(t_infra *shell)
 			add_history(shell->rd);
 		shell->trim_rd = ft_strtrim(shell->rd, "\t \n\r");
 		if(!*shell->trim_rd)
-			printf("nothing\n");
-			
+			continue;
 		if(!right_quotes(shell->trim_rd))
 		{
 			printf("error quoets\n");
 			continue;
 		}
-		shell->cmds = ft_split(shell->trim_rd, ' ');
-		if(!shell->cmds[0])
+		if(!check_redirect(shell->trim_rd))
+		{
+			printf("error redirect\n");
 			continue;
-		i = 0;	
+		}
+		shell->cmds = ft_split(shell->trim_rd, '|');
+		while(*shell->cmds)
+			printf("%s\n", *shell->cmds++);
+		i = 0;
 		while(shell->cmds[i])
 			clean_quotes(shell->cmds[i++]);
-		if(excecute(shell->cmds))
-			continue;
+		// if(excecute(shell->cmds))
+		// 	continue;
 	}
 }
 

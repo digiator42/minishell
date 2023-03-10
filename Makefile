@@ -1,7 +1,8 @@
 NAME = minishell
 
-SRCS =	parsing.c \
-		utils.c
+SRCS =	parsing.c 		\
+		utils.c			\
+		redirection.c
 OBJS = $(SRCS:.c=.o)
 
 GCC = cc
