@@ -6,7 +6,7 @@
 /*   By: ahassan <ahassan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:21:37 by ahassan           #+#    #+#             */
-/*   Updated: 2023/03/11 01:00:47 by ahassan          ###   ########.fr       */
+/*   Updated: 2023/03/12 00:05:42 by ahassan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,12 @@ int get_line(t_infra *shell)
 			return(printf("exit\n"), 0);
 		if(ft_strcmp(shell->rd, ""))
 			add_history(shell->rd);
-		shell->trim_rd = ft_strtrim(shell->rd, "\t \n\r");
+		shell->trim_rd = ft_strtrim(shell->rd, "\t \n\v\r");
 		if(!*shell->trim_rd)
 			continue;
-		if(!right_quotes(shell->trim_rd))
-		{
-			printf("error quoets\n");
+		if(!syntax_err(shell))
 			continue;
-		}
-		if(!check_redirect(shell->trim_rd))
-		{
-			printf("error redirect\n");
-			continue;
-		}
-		shell->cmds = ft_split(shell->trim_rd, '|');
+		shell->cmds = ft_split_with_quotes(shell->trim_rd, '|');
 		while(*shell->cmds)
 			printf("%s\n", *shell->cmds++);
 		i = 0;

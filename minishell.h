@@ -6,7 +6,7 @@
 /*   By: ahassan <ahassan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:47:12 by ahassan           #+#    #+#             */
-/*   Updated: 2023/03/11 00:43:35 by ahassan          ###   ########.fr       */
+/*   Updated: 2023/03/11 23:57:53 by ahassan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,9 @@ char* replace(char* str, char* old, char* newstr);
 int	right_quotes(char *str);
 void	clean_quotes(char *str);
 int	check_redirect(char *str);
+int	check_pipes(char *line);
+void is_quote(char c, char *quote);
+int syntax_err(t_infra *in);
+char	**ft_split_with_quotes(char const *s, char c);
+
 #endif

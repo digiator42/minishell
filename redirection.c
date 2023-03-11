@@ -6,7 +6,7 @@
 /*   By: ahassan <ahassan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:07:57 by ahassan           #+#    #+#             */
-/*   Updated: 2023/03/11 01:00:38 by ahassan          ###   ########.fr       */
+/*   Updated: 2023/03/11 01:27:18 by ahassan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_redirect(char *str, int *i, int flag)
 			(*i)++;
 		while (str[*i] == ' ')
 			(*i)++;
-		if ((str[*i-1] == '>' || str[*i-1] == '<') && (!flag))
+		if ((str[*i] == '>' || str[*i] == '<') && (!flag))
 			return (FALSE);
 	}
 	else

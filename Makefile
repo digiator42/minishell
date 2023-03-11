@@ -2,7 +2,11 @@ NAME = minishell
 
 SRCS =	parsing.c 		\
 		utils.c			\
-		redirection.c
+		redirection.c	\
+		pipe_err.c		\
+		err_handling.c	\
+		pipe_split.c	\
+
 OBJS = $(SRCS:.c=.o)
 
 GCC = cc
